@@ -37,6 +37,7 @@ async function sentOtpEmail(email, otp) {
 
     await axios.post("https://api.emailjs.com/api/v1.0/email/send", payload);
 }
+
 // Gửi OTP (tạm bằng console log / email thật)
 app.post("/request-reset", async (req, res) => {
   const { email } = req.body;
@@ -48,6 +49,8 @@ app.post("/request-reset", async (req, res) => {
     otps.set(email, otp);
 
     setTimeout(() => otps.delete(email), 5 * 60 * 1000); // OTP hết hạn sau 5 phút
+
+    await sentOtpEmail(email, otp); // <- Thêm dòng này sau khi tạo OTP
 
     // Gửi email bằng EmailJS / nodemailer (bạn cấu hình)
     console.log(`OTP cho ${email}: ${otp}`);
