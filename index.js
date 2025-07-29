@@ -30,8 +30,9 @@ async function sentOtpEmail(email, otp) {
         user_id: userId,
         accessToken: accessToken,
         template_params: {
-            user_email: email,
-            otp_code: otp,
+            to_email: email,
+            otp: otp,
+            name: 'SAGO',
         },
     }
 
