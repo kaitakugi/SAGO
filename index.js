@@ -26,7 +26,7 @@ async function sentOtpEmail(email, otp) {
     const accessToken = process.env.EMAILJS_ACCESS_TOKEN;
 
     const payload = {
-        serviceId: serviceId,
+        service_id: serviceId,
         template_id: templateId,
         user_id: userId,
         accessToken: accessToken,
@@ -46,7 +46,7 @@ app.post("/request-reset", async (req, res) => {
   if (!email) return res.status(400).json({success: false,message: "Thiếu email"});
 
   try {
-    const user = await admin.auth().getUserByEmail(email);
+    await admin.auth().getUserByEmail(email);
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     otps.set(email, otp);
 
