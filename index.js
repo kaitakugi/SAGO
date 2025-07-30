@@ -3,6 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const admin = require("firebase-admin");
 const axios = require("axios");
+require('dotenv').config();
 
 // Khởi tạo Firebase Admin SDK
 // 🔐 Parse chuỗi JSON từ biến môi trường
@@ -19,10 +20,10 @@ app.use(bodyParser.json());
 const otps = new Map(); // Dùng tạm Map, có thể dùng Redis hoặc DB
 
 async function sentOtpEmail(email, otp) {
-    const serviceId = 'service_u7697ad';
-    const templateId = 'template_9cbqhod';
-    const userId = '9hi25va7h963miNGI';
-    const accessToken = 'H8fVuLkBqPpU-adG7_Oe0';
+    const serviceId = process.env.EMAILJS_SERVICE_ID;
+    const templateId = process.env.EMAILJS_TEMPLATE_ID;
+    const userId = process.env.EMAILJS_USER_ID;
+    const accessToken = process.env.EMAILJS_ACCESS_TOKEN;
 
     const payload = {
         serviceId: serviceId,
