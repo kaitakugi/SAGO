@@ -57,6 +57,7 @@ app.post("/request-reset", async (req, res) => {
     console.log(`OTP cho ${email}: ${otp}`);
     res.json({ success: true, message: "OTP đã gửi" });
   } catch (err) {
+    console.error(err);
     res.status(404).json({ success: false, message: "Tài khoản không tồn tại" });
   }
 });
