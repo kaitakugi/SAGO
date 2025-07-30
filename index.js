@@ -51,7 +51,7 @@ app.post("/request-reset", async (req, res) => {
 
     setTimeout(() => otps.delete(email), 5 * 60 * 1000); // OTP hết hạn sau 5 phút
 
-    await sentOtpEmail(email, otp); // <- Thêm dòng này sau khi tạo OTP
+    await sentOtpEmail(email, otp);
 
     // Gửi email bằng EmailJS / nodemailer (bạn cấu hình)
     console.log(`OTP cho ${email}: ${otp}`);
